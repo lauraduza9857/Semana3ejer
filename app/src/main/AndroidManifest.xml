@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Calculador">
         <activity
+            android:name=".ColoresFondo"
+            android:exported="true" />
+        <activity
             android:name=".ResultadoFinal"
             android:exported="true" />
         <activity

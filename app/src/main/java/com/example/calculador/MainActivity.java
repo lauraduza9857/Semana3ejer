@@ -1,8 +1,11 @@
 package com.example.calculador;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText nombreText;
     private Button botonColores;
     private Button botonContinuar;
+    private ConstraintLayout layout;
 
 
     @Override
@@ -33,6 +37,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         botonContinuar = findViewById(R.id.botonContinuar);
 
         botonContinuar.setOnClickListener(this);
+        layout = findViewById(R.id.layout);
+
+
+        botonColores.setOnClickListener((v)->{
+
+            Intent ii = new Intent(this, ColoresFondo.class);
+            startActivity(ii);
+
+        });
+
 
         }
 
@@ -43,15 +57,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.botonContinuar:
                 String nombre = nombreText.getText().toString();
+                SharedPreferences preferencias =getSharedPreferences ("fondo",MODE_PRIVATE);
+                preferencias.edit().putString(nombre, "¨nombre").apply();
 
                 Intent i = new Intent(this, CalculoNotaActivity.class);
                 startActivity(i);
+
+                break;
+
 
 
 
 
     }
+
+
 }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferencias =getSharedPreferences ("fondo",MODE_PRIVATE);
+        String background = preferencias.getString("color", "#FFFFFF");
+        layout.setBackgroundColor(Color.parseColor(background));
+
+
+    }
 
 }
