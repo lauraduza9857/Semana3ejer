@@ -21,6 +21,8 @@ public class ResultadoFinal extends AppCompatActivity {
     private String notamateria;
     private String name;
 
+    //TENGO MIEDOOOO
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
